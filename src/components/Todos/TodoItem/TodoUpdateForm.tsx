@@ -1,11 +1,32 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
 import { updateTodoItem } from "../../../store/todoSlice";
 
 interface TodoUpdateFormProps {
     id: number;
     text: string;
 }
+
+const StyledForm = styled.form`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    & input[type="submit"] {
+        height: 2rem;
+        padding: .3rem .6rem;
+        background-color: white;
+        cursor: pointer;
+        transition: .5s;
+        &:hover {
+          background-color: #61dafb;
+        }
+    }
+    & input[type="text"] {
+        height: 2rem;
+    }
+`;
 
 export const TodoUpdateForm = ({id, text}:TodoUpdateFormProps) => {
     const [newTodoText, setNewTodoText] = useState(text);
@@ -24,9 +45,9 @@ export const TodoUpdateForm = ({id, text}:TodoUpdateFormProps) => {
     }
 
     return (
-        <form onSubmit={submitUpdatedTodoHandler}>
-          <input value={newTodoText} onChange={newTodoTextInputHandler}/>
-          <input type="submit" />
-        </form>
+        <StyledForm onSubmit={submitUpdatedTodoHandler}>
+          <input value={newTodoText} onChange={newTodoTextInputHandler} maxLength={50} style={{width:'70%'}}/>
+          <input type="submit" style={{width:'25%'}} />
+        </StyledForm>
     )
 }
