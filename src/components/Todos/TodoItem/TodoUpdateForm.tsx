@@ -8,16 +8,18 @@ interface TodoUpdateFormProps {
     text: string;
 }
 
-const StyledForm = styled.form`
+export const StyledForm = styled.form`
     width: 100%;
     display: flex;
     justify-content: space-between;
+       
 
     & input[type="submit"] {
-        height: 2rem;
+        height: 2.3rem;
         padding: .3rem .6rem;
         background-color: white;
         cursor: pointer;
+        font-weight: 600;
         transition: .5s;
         &:hover {
           background-color: #61dafb;
