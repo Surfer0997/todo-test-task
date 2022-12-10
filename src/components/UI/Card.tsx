@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import styles from './Card.module.css';
 import styled from 'styled-components';
 
 interface CardProps {
@@ -15,5 +14,5 @@ display: inline-block;
 `;
 
 export const Card = (props:CardProps) => {
-  return <CardContainer className={styles.card}>{props.children}</CardContainer>;
+  return <CardContainer>{props.children}</CardContainer>;
 };
