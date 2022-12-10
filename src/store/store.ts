@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import todoSliceReducer from './todoSlice';
+import todoSliceReducer, { localStorageMiddleware } from './todoSlice';
 
 const store = configureStore({
     reducer: {
         todo: todoSliceReducer,
-    }
+    },
+    middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(localStorageMiddleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>;

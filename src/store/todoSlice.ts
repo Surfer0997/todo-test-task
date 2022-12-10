@@ -1,9 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, Middleware } from '@reduxjs/toolkit';
 import { mockTodos, Todo } from '../types/todoTypes';
 
-const initialState = {
-  todos: mockTodos as Todo[],
+const reHydrateStore = () => {
+  const localStoredData = localStorage.getItem('todoApplicationState');
+  if (localStoredData) {
+    return JSON.parse(localStoredData).todo.todos; // re-hydrate the store
+  } else {
+    return {todos: mockTodos as Todo[],}
+  }
 };
+
+const initialState = {todos: reHydrateStore() as Todo[]};
 
 export const todoSlice = createSlice({
   name: 'todo',
@@ -39,9 +46,21 @@ export const todoSlice = createSlice({
     deleteTodoItem: (state, action) => {
       const idToDelete = action.payload;
       state.todos = state.todos.filter(todo=>todo.id !== idToDelete);
-    }
+    },
   },
 });
+
+//MIDDLEWARE
+export const localStorageMiddleware:Middleware = (state) => {
+  return next => action => {
+    const result = next(action);
+    localStorage.setItem('todoApplicationState', JSON.stringify(state.getState()));
+    console.log('Stored to localstorage');
+    return result;
+  };
+};
+
+
 
 export const { updateTodoItem, addTodoItem, deleteTodoItem } = todoSlice.actions;
 export default todoSlice.reducer;
