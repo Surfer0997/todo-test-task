@@ -32,7 +32,7 @@ export const NewTodoForm = () => {
           maxLength={50}
           value={newTodoText}
           onChange={todoTextInputHandler}
-          style={{width:'70%'}}
+          style={{width:'70%', textIndent:'.5rem'}}
         />
         <input type="submit"  style={{width:'25%'}} value="Add todo"/>
       </StyledForm>
