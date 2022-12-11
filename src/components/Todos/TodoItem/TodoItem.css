@@ -1,0 +1,17 @@
+.todo-item {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all .5s ease-in;
+}
+
+.todo-item-enter-active,
+.todo-item-enter-done {
+    opacity: 1;
+    transform: translateX(0%);
+}
+
+.todo-item-exit-active,
+.todo-item-exit-done {
+    opacity: 0;
+    transform: translateX(100%);
+}
