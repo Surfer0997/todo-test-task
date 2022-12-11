@@ -48,7 +48,7 @@ export const TodoUpdateForm = ({id, text}:TodoUpdateFormProps) => {
 
     return (
         <StyledForm onSubmit={submitUpdatedTodoHandler}>
-          <input value={newTodoText} onChange={newTodoTextInputHandler} maxLength={50} style={{width:'70%'}}/>
+          <input value={newTodoText} onChange={newTodoTextInputHandler} maxLength={50} style={{width:'70%', textIndent:'.5rem'}}/>
           <input type="submit" style={{width:'25%'}} />
         </StyledForm>
     )
